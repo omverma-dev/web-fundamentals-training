@@ -11,45 +11,308 @@
      ink #222322   text #3a3d3a   muted #5f645f   background #f6f7f2
      surface #ffffff   line #e2e5dc   accent #d3ff50   accent-dark #4d6b00 */
 :root {
-
+   --ink: #222322;
+   --text: #3a3d3a;
+   --muted: #5f645f;
+   --background: #f6f7f2;
+   --surface: #ffffff;
+   --line: #e2e5dc;
+   --accent: #d3ff50;
+   --accent-dark: #4d6b00;
+   --space: 1rem;
+   --radius: 0.75rem;
 }
 
 /* TODO 2: Reset
    - box-sizing: border-box on everything
    - images: max-width: 100%; height: auto; display: block
-   - remove default margins on body, headings, paragraphs */
+    - remove default margins on body, headings, paragraphs */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
 
 /* TODO 3: Base typography (body font, size, line-height, colours) */
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip-link:focus {
+  left: var(--space);
+}
 
 
 /* TODO 4: Buttons (.btn and .btn-primary), with :hover styles */
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.btn-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
 
 
 /* TODO 5: Header
    - Flexbox: logo, nav and search in a row (wrap on mobile)
    - position: sticky; top: 0  so it stays visible while scrolling */
+.site-header {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
+  padding: var(--space);
+  background: var(--surface);
+}
+
+.logo {
+  width: 160px;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  color: var(--ink);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.search input,
+.newsletter-form input {
+  min-width: 0;
+  padding: 0.65rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  font: inherit;
+}
+
+.search label {
+  flex-basis: 100%;
 
 
 /* TODO 6: Hero
    - dark background, white heading
    - one column on mobile, two columns from 768px */
+.hero {
+  display: grid;
+  gap: var(--space);
+  max-width: 1152px;
+  margin: var(--space) auto;
+  padding: var(--space);
+  border-radius: var(--radius-lg);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.hero h1 {
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  margin-bottom: var(--space);
+}
+
+.hero img {
+  width: 100%;
+  border-radius: var(--radius);
+}
 
 
 /* TODO 7: Product grid
    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
    Cards: white, rounded, padding.
    Images: aspect-ratio: 1 / 1; object-fit: cover */
+#products,
+.newsletter {
+  max-width: 1152px;
+  margin: var(--space) auto;
+  padding: 0 var(--space);
+}
+
+#products h2,
+.newsletter h2 {
+  color: var(--ink);
+}
+
+.section-sub {
+  margin-bottom: var(--space);
+  color: var(--muted);
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space);
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  padding: var(--space);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 0.75rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.card-category {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.card-title {
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.card-title a {
+  text-decoration: none;
+}
+
+.card-price {
+  color: var(--ink);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-rating {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+}
 
 
 /* TODO 8: Newsletter form and footer */
+.newsletter {
+  padding: var(--space);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.newsletter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space);
+  padding: var(--space);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.footer-links a {
+  color: var(--accent);
+}
 
 
 /* TODO 9: Accessibility
    - visible :focus-visible outline on links, buttons and inputs
    - check text contrast with DevTools */
+:where(a, button, input):focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
 
 
 /* TODO 10: Media queries
 @media (min-width: 768px) { ... }
 @media (min-width: 1024px) { ... } */
+@media (min-width: 768px) {
+  .site-header {
+    flex-wrap: nowrap;
+  }
+
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    padding: 2.5rem;
+  }
+
+  .search label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header {
+    padding-right: max(var(--space), calc((100% - 1232px) / 2));
+    padding-left: max(var(--space), calc((100% - 1232px) / 2));
+  }
+}
